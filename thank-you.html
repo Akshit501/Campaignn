@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank you | ET AI Hackathon 2026</title>
+  <!-- Keep the thank-you page out of search results; it exists for conversion tracking -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#07080b">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<!-- Point URL-based conversion goals (Google Ads, LinkedIn, GA4) at this page:
+     thank-you.html?type=partner  → partner lead
+     thank-you.html?type=builder  → builder registration -->
+<body data-page="thank-you">
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="et-logo-badge">
+          <div class="et-crest">ET</div>
+          <div class="et-text-brand">
+            <span class="et-sub">The Economic Times</span>
+            <span class="et-main">AI HACKATHON 2026</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="ty-wrap">
+    <!-- Partner enquiry -->
+    <div class="ty-card" data-for="partner">
+      <h1>Thanks<span id="ty-name"></span>. Your enquiry is in.</h1>
+      <p>
+        We've sent the sponsor deck to your work email. Our partnerships team will get in touch to
+        talk through tiers, tracks and timelines.
+      </p>
+      <div class="ty-actions">
+        <a id="ty-deck-link" class="btn btn-primary btn-lg" href="#" target="_blank" rel="noopener" hidden>Download the sponsor deck</a>
+        <a class="btn btn-secondary btn-lg" href="index.html#sponsor">Back to partnership details</a>
+      </div>
+    </div>
+
+    <!-- Builder registration -->
+    <div class="ty-card" data-for="builder" hidden>
+      <h1>You're registered<span id="ty-name-b"></span>.</h1>
+      <p>
+        Check your email for next steps. Challenge tracks open on 15 Oct and idea submissions close on 28 Nov.
+        Teams can have 1 to 4 members, so bring your teammates in now.
+      </p>
+      <div class="ty-actions">
+        <a class="btn btn-primary btn-lg" href="index.html#challenges">Explore the challenge tracks</a>
+        <a class="btn btn-secondary btn-lg"
+           href="https://wa.me/?text=I%E2%80%99ve%20registered%20for%20the%20ET%20AI%20Hackathon%202026.%20Join%20my%20team%3A%20https%3A%2F%2FREPLACE-WITH-LIVE-URL%2F%3Futm_source%3Dreferral%26utm_medium%3Dwhatsapp%26utm_campaign%3Dteam_invite"
+           target="_blank" rel="noopener" data-track="team_invite_whatsapp">Invite teammates on WhatsApp</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
