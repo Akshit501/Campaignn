@@ -55,6 +55,62 @@
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="styles.css">
+
+<style>
+/* Counter animation */
+.counter { display: inline-block; }
+/* Marquee */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-item { display: inline-flex; align-items: center; background: var(--bg-surface); padding: 12px 32px; border-radius: 100px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-subtle); }
+
+/* Colorful Sponsor Play Cards */
+.sponsor-benefits-grid .card:nth-child(1) { background: linear-gradient(135deg, #FFE2E2 0%, #FFF3F3 100%); border-color: #FFA4A4; box-shadow: 0 10px 30px rgba(255, 164, 164, 0.2); }
+.sponsor-benefits-grid .card:nth-child(2) { background: linear-gradient(135deg, #E2F0FF 0%, #F3F8FF 100%); border-color: #A4D1FF; box-shadow: 0 10px 30px rgba(164, 209, 255, 0.2); }
+.sponsor-benefits-grid .card:nth-child(3) { background: linear-gradient(135deg, #E2FFE9 0%, #F3FFF6 100%); border-color: #A4FFBE; box-shadow: 0 10px 30px rgba(164, 255, 190, 0.2); }
+.sponsor-benefits-grid .card:nth-child(4) { background: linear-gradient(135deg, #F3E2FF 0%, #F9F3FF 100%); border-color: #D1A4FF; box-shadow: 0 10px 30px rgba(209, 164, 255, 0.2); }
+.sponsor-benefits-grid .card:nth-child(5) { background: linear-gradient(135deg, #FFF5E2 0%, #FFFBF3 100%); border-color: #FFDDA4; box-shadow: 0 10px 30px rgba(255, 221, 164, 0.2); }
+.sponsor-benefits-grid .card:nth-child(6) { background: linear-gradient(135deg, #FFE2F0 0%, #FFF3F8 100%); border-color: #FFA4D1; box-shadow: 0 10px 30px rgba(255, 164, 209, 0.2); }
+
+/* Horizontal How It Works */
+.how-it-works-grid {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch;
+  gap: 16px !important;
+  overflow-x: auto;
+  padding-bottom: 24px;
+}
+.how-it-works-grid > div {
+  flex: 1;
+  min-width: 250px;
+  position: relative;
+}
+/* Arrow */
+.how-it-works-grid > div:not(:last-child)::after {
+  content: '➔';
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  transform: translateY(-50%);
+  font-size: 24px;
+  color: var(--primary-color);
+  z-index: 10;
+}
+@media (max-width: 768px) {
+  .how-it-works-grid { flex-direction: column !important; overflow-x: visible; }
+  .how-it-works-grid > div:not(:last-child)::after {
+    content: '↓';
+    top: auto;
+    bottom: -20px;
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
+</style>
+
 </head>
 <body>
 
@@ -81,16 +137,16 @@
         <!-- Navigation Links -->
         <nav class="nav-links" aria-label="Main Navigation">
           <a href="#about" class="nav-link">About</a>
-          <a href="#challenges" class="nav-link">Challenges</a>
-          <a href="#journey" class="nav-link">Journey</a>
+          <a href="#who-should-build" class="nav-link">Who Should Build</a>
           <a href="#sponsor" class="nav-link">Why Sponsor</a>
-          <a href="#impact" class="nav-link">Past Impact</a>
+          <a href="#impact" class="nav-link">Hall of Fame</a>
+          <a href="#videos" class="nav-link">Videos</a>
           <a href="#faq" class="nav-link">FAQ</a>
         </nav>
 
         <!-- Header Actions & Controls -->
         <div class="header-actions">
-          <a href="#lead" class="btn btn-secondary btn-sm" data-track="header_partner_click">Partner with us</a>
+          <a href="#hero-enquiry-form" class="btn btn-secondary btn-sm partner-glow-btn" data-track="header_partner_click">Partner with us</a>
           <button type="button" class="btn btn-primary btn-sm open-builder-modal-btn" data-track="header_register_click">Register free</button>
         </div>
       </div>
@@ -98,622 +154,573 @@
   </header>
 
   <!-- ==========================================================================
-       02 HERO SECTION
+       02 HERO SECTION — Split Layout (Left: Content | Right: Enquiry Form)
        ========================================================================== -->
-  <section class="hero-section">
+    <section class="hero-section" style="position: relative; background: #FEF6F5; z-index: 1; overflow: hidden; padding-top: 60px; padding-bottom: 80px;">
+    <!-- Background elements -->
+    <div style="position: absolute; bottom: -50px; left: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(244,63,94,0.15) 0%, rgba(244,63,94,0) 70%); z-index: -1;"></div>
+    <div style="position: absolute; top: -50px; right: 0; width: 800px; height: 800px; background: radial-gradient(circle, rgba(254,205,211,0.6) 0%, rgba(254,205,211,0) 70%); z-index: -1;"></div>
+
+    <!-- Decorative stars -->
+    <svg style="position: absolute; right: 4%; top: 40%; width: 28px; opacity: 1;" viewBox="0 0 100 100"><path d="M50 0 Q50 50 100 50 Q50 50 50 100 Q50 50 0 50 Q50 50 50 0 Z" fill="#A855F7"/></svg>
+    <svg style="position: absolute; right: 8%; top: 52%; width: 20px; opacity: 1;" viewBox="0 0 100 100"><path d="M50 0 Q50 50 100 50 Q50 50 50 100 Q50 50 0 50 Q50 50 50 0 Z" fill="#F97316"/></svg>
+    <svg style="position: absolute; left: 45%; bottom: 15%; width: 16px; opacity: 1;" viewBox="0 0 100 100"><path d="M50 0 Q50 50 100 50 Q50 50 50 100 Q50 50 0 50 Q50 50 50 0 Z" fill="#8B5CF6"/></svg>
+
     <div class="container">
-
-      <div class="hero-box">
-        <!-- Superbadge -->
-        <div class="hero-superbadge">
-          <span style="color: var(--primary-light);">✦</span>
-          <span>INDIA'S LARGEST ENTERPRISE & DEVELOPER GENERATIVE AI MARATHON</span>
-          <span style="color: var(--primary-light);">✦</span>
+      <div class="hero-split" style="display: grid; grid-template-columns: 1.35fr 0.65fr; gap: 40px; align-items: center;">
+        
+        <!-- Left Side: Content -->
+        <div class="hero-left" style="position: relative;">
+          
+          <!-- User requested exact image for the ENTIRE left side (NO HTML animation for numbers) -->
+          <img src="assets/images/hero_left_highres.png" style="width: 125%; max-width: 125%; margin-left: -12%; margin-top: -20px; display: block;" alt="Hero Graphic">
+          
         </div>
 
-        <!-- Main Title -->
-        <h1 class="hero-title">
-          ET AI <span class="gradient-text">HACKATHON</span> 2026
-        </h1>
+        <!-- Right Side: Form Card -->
+        <div class="hero-right" style="background: #ffffff; padding: 48px 40px; border-radius: 16px; box-shadow: 0 20px 60px rgba(244,63,94,0.08); position: relative; border: 2px solid transparent; background-image: linear-gradient(#fff, #fff), linear-gradient(90deg, #E11D48, #F97316); background-origin: border-box; background-clip: padding-box, border-box;">
+          
+          <h3 style="font-size: 26px; color: #0b0f19; margin-bottom: 12px; font-weight: 800; line-height: 1.2;">Become a Sponsor Partner</h3>
+          <p style="font-size: 14px; color: #64748b; margin-bottom: 32px; line-height: 1.6;">Get the chance to build innovative solutions, collaborate with industry experts and win exciting opportunities.</p>
+          
+          <form id="hero-enquiry-form" class="js-lead-form" data-form-type="builder" style="display: flex; flex-direction: column; gap: 16px;" novalidate>
+            <div>
+              <label style="display: block; font-size: 10px; font-weight: 700; color: #64748b; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px;">Full Name *</label>
+              <input type="text" name="full_name" placeholder="Your Name" required style="width: 100%; padding: 14px 16px; border-radius: 8px; border: 1px solid #e2e8f0; background: #fafafa; color: #0f172a; font-size: 15px; outline: none;">
+            </div>
+            <div>
+              <label style="display: block; font-size: 10px; font-weight: 700; color: #64748b; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px;">Work Email *</label>
+              <input type="email" name="email" placeholder="you@company.com" required style="width: 100%; padding: 14px 16px; border-radius: 8px; border: 1px solid #e2e8f0; background: #fafafa; color: #0f172a; font-size: 15px; outline: none;">
+            </div>
+            <div>
+              <label style="display: block; font-size: 10px; font-weight: 700; color: #64748b; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px;">Phone Number *</label>
+              <input type="tel" name="phone" placeholder="+91 98765 43210" required style="width: 100%; padding: 14px 16px; border-radius: 8px; border: 1px solid #e2e8f0; background: #fafafa; color: #0f172a; font-size: 15px; outline: none;">
+            </div>
+            
+            <!-- Hidden honeypot -->
+            <input type="text" name="website" style="display:none" tabindex="-1">
+            <div class="js-attribution-fields"></div>
+            <p class="form-error" role="alert" style="color: #ef4444; font-size: 13px; font-weight: 500;"></p>
 
-        <!-- Subtitle / Tagline -->
-        <p class="hero-tagline" id="hero-tagline">
-          Where India's sharpest AI builders meet the enterprise challenges that matter — and build what's next. 
-          Powered by <strong style="color: #fff;">The Economic Times</strong>, Fortune 500 partners, and 50M+ national reader reach.
-        </p>
-
-        <!-- CTA Buttons -->
-        <div class="hero-cta-group" id="hero-cta-group">
-          <button type="button" class="btn btn-primary btn-lg open-builder-modal-btn" id="hero-cta-builder" data-track="hero_register_click">
-            Register for Free (Builder Track) ⚡
-          </button>
-          <a href="#lead" class="btn btn-secondary btn-lg" id="hero-cta-partner" data-track="hero_partner_click">
-            Partner With Us (Enterprise Track) →
-          </a>
+            <button type="submit" class="form-submit" style="margin-top: 16px; width: 100%; padding: 16px; border-radius: 8px; font-weight: 700; font-size: 15px; color: #fff; background: linear-gradient(90deg, #f43f5e 0%, #f97316 100%); border: none; cursor: pointer; transition: transform 0.2s, opacity 0.2s;">
+              Get the Sponsor Deck &rarr;
+            </button>
+            <p style="font-size: 10px; color: #475569; font-weight: 500; text-align: left; margin-top: 12px; line-height: 1.5;">
+              Your information will be used to contact you regarding sponsorship opportunities.
+            </p>
+          </form>
         </div>
 
-        <!-- Live Countdown Strip -->
-        <!-- Deadline is a fixed date (Phase 1 close). Change data-deadline if the schedule moves. -->
-        <div class="countdown-strip" data-deadline="2026-11-10T23:59:59+05:30">
-          <div class="countdown-label">Registration closes 10 Nov, 11:59 PM IST</div>
-          <div class="timer-units">
-            <div class="timer-digit-box">
-              <span id="timer-days" class="timer-num">--</span>
-              <span class="timer-sub">Days</span>
-            </div>
-            <span class="timer-sep">:</span>
-            <div class="timer-digit-box">
-              <span id="timer-hours" class="timer-num">--</span>
-              <span class="timer-sub">Hours</span>
-            </div>
-            <span class="timer-sep">:</span>
-            <div class="timer-digit-box">
-              <span id="timer-mins" class="timer-num">--</span>
-              <span class="timer-sub">Mins</span>
-            </div>
-            <span class="timer-sep">:</span>
-            <div class="timer-digit-box">
-              <span id="timer-secs" class="timer-num" style="color: var(--primary-light);">--</span>
-              <span class="timer-sub">Secs</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Micro Features Pulse Bar -->
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; font-family: var(--font-mono); font-size: 13px; color: var(--text-dim); margin-top: 4px;">
-          <span>✓ ₹40,00,000+ Prize Pool</span>
-          <span>✓ 100% Free Entry & Compute Grants</span>
-          <span>✓ 1-on-1 CXO Mentorship</span>
-          <span>✓ Direct Enterprise Pilot Fast-Track</span>
-        </div>
       </div>
     </div>
   </section>
 
   <!-- ==========================================================================
-       04 HACKATHON AT A GLANCE
+       02 SCALE, REACH & NATIONAL IMPACT (MARQUEE)
        ========================================================================== -->
-  <section class="section-pad">
-    <div class="container">
+  <section class="marquee-section" style="background: var(--bg-surface-elevated); padding: 40px 0; border-bottom: 1px solid var(--border-subtle); overflow: hidden;">
+    <div class="container" style="text-align: center; margin-bottom: 24px;">
+      <h2 style="font-size: 24px; font-weight: 800; color: var(--text-highlight); text-transform: uppercase;">Scale, Reach & National Impact</h2>
+      <p style="font-size: 16px; color: var(--text-muted);">Backed by India's most authoritative financial media powerhouse and trusted by industry titans.</p>
+    </div>
+    <div class="marquee-wrapper" style="position: relative; width: 100%; display: flex; white-space: nowrap;">
+      <div class="marquee-track" style="display: flex; gap: 40px; animation: scroll-left 20s linear infinite;">
+        
+          <!-- Track 1 -->
+          <img src="assets/logos/accenture.svg" height="40" alt="Accenture" style="filter: brightness(0); opacity: 0.8; max-width: 150px; object-fit: contain;">
+          <img src="assets/logos/microsoft.svg" height="40" alt="Microsoft" style="filter: brightness(0); opacity: 0.8; max-width: 150px; object-fit: contain;">
+          <img src="assets/logos/google.svg" height="40" alt="Google" style="filter: brightness(0); opacity: 0.8; max-width: 150px; object-fit: contain;">
+          <img src="assets/logos/aws.svg" height="40" alt="AWS" style="filter: brightness(0); opacity: 0.8; max-width: 150px; object-fit: contain;">
+          <img src="assets/logos/ibm.svg" height="40" alt="IBM" style="filter: brightness(0); opacity: 0.8; max-width: 150px; object-fit: contain;">
+          <div class="logo-text" style="font-family: Helvetica, sans-serif; letter-spacing: 2px; text-transform: uppercase;">Intel</div>
+          <img src="assets/logos/meta.svg" height="40" alt="Meta" style="filter: brightness(0); opacity: 0.8; max-width: 150px; object-fit: contain;">
+          <img src="assets/logos/nvidia.svg" height="40" alt="NVIDIA" style="filter: brightness(0); opacity: 0.8; max-width: 150px; object-fit: contain;">
+          <!-- Track 2 (Duplicate for infinite loop) -->
+          <img src="assets/logos/accenture.svg" height="40" alt="Accenture" style="filter: brightness(0); opacity: 0.8; max-width: 150px; object-fit: contain;">
+          <img src="assets/logos/microsoft.svg" height="40" alt="Microsoft" style="filter: brightness(0); opacity: 0.8; max-width: 150px; object-fit: contain;">
+          <img src="assets/logos/google.svg" height="40" alt="Google" style="filter: brightness(0); opacity: 0.8; max-width: 150px; object-fit: contain;">
+          <img src="assets/logos/aws.svg" height="40" alt="AWS" style="filter: brightness(0); opacity: 0.8; max-width: 150px; object-fit: contain;">
+          <img src="assets/logos/ibm.svg" height="40" alt="IBM" style="filter: brightness(0); opacity: 0.8; max-width: 150px; object-fit: contain;">
+          <div class="logo-text" style="font-family: Helvetica, sans-serif; letter-spacing: 2px; text-transform: uppercase;">Intel</div>
+          <img src="assets/logos/meta.svg" height="40" alt="Meta" style="filter: brightness(0); opacity: 0.8; max-width: 150px; object-fit: contain;">
+          <img src="assets/logos/nvidia.svg" height="40" alt="NVIDIA" style="filter: brightness(0); opacity: 0.8; max-width: 150px; object-fit: contain;">
+</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ==========================================================================
+       04 ABOUT THE HACKATHON (WHAT'S NEW THIS EDITION)
+       ========================================================================== -->
+  
+<!-- ==========================================================================
+       06 WHY SPONSOR THE ET AI HACKATHON? — MOST IMPORTANT SECTION
+       ========================================================================== -->
+  <!-- ==========================================================================
+       WHY SPONSOR
+       ========================================================================== -->
+  <section id="sponsor" class="section-pad sponsor-section" style="background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%); color: #fff; position: relative; overflow: hidden;">
+    <!-- Abstract glow -->
+    <div style="position: absolute; top: -20%; left: -10%; width: 50%; height: 50%; background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+    <div style="position: absolute; bottom: -20%; right: -10%; width: 50%; height: 50%; background: radial-gradient(circle, rgba(236,72,153,0.15) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+    
+    <div class="container" style="position: relative; z-index: 1;">
       <div class="section-head centered">
-        <h2 class="section-title">Scale, Reach & National Impact</h2>
-        <p class="section-desc">Backed by India's most authoritative financial media powerhouse and trusted by industry titans.</p>
+        <div class="sponsor-highlight-badge" style="color: #fff; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(8px); display: inline-block; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 24px; letter-spacing: 1px; text-transform: uppercase;"> Enterprise Partnership Invitational 2026</div>
+        <h2 class="section-title" style="color: #fff; font-size: 42px; font-weight: 800; margin-bottom: 24px;">Why Sponsor the ET AI Hackathon?</h2>
+        <p class="section-desc" style="max-width: 760px; color: rgba(255,255,255,0.7); margin: 0 auto; font-size: 18px; line-height: 1.6;">
+          Co-create India's premier AI milestone with The Economic Times. Drive real-world developer platform adoption, acquire top 1% engineering talent, and position your brand leadership at the forefront of the generative revolution.
+        </p>
       </div>
 
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-num highlight">5,000+</div>
-          <div class="stat-label">Builders & Students</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">100+</div>
-          <div class="stat-label">Colleges Reached</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num highlight">200+</div>
-          <div class="stat-label">AI Solutions Built</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">50+</div>
-          <div class="stat-label">Industry Mentors</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">20+</div>
-          <div class="stat-label">Cities Represented</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num highlight">10+</div>
-          <div class="stat-label">Winning Teams Funded</div>
-        </div>
-      </div>
-    </div>
-  </section>
+      <style>
+        .premium-card {
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 20px;
+          padding: 32px;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          backdrop-filter: blur(12px);
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+        }
+        .premium-card:hover {
+          transform: translateY(-8px);
+          background: rgba(255, 255, 255, 0.06);
+          border-color: rgba(255, 255, 255, 0.2);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .premium-card::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; width: 100%; height: 2px;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+          opacity: 0;
+          transition: opacity 0.4s ease;
+        }
+        .premium-card:hover::before {
+          opacity: 1;
+        }
+        .card-number {
+          position: absolute;
+          top: -10px;
+          right: 10px;
+          font-size: 120px;
+          font-weight: 900;
+          color: rgba(255,255,255,0.03);
+          line-height: 1;
+          pointer-events: none;
+          transition: color 0.4s ease;
+        }
+        .premium-card:hover .card-number {
+          color: rgba(255,255,255,0.06);
+        }
+      </style>
 
-  <!-- ==========================================================================
-       05 ABOUT THE HACKATHON (WHAT'S NEW)
-       ========================================================================== -->
-  <section id="about" class="section-pad" style="background: rgba(13, 15, 21, 0.6); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
-    <div class="container">
-
-      <div class="about-grid about-grid--single">
-        <!-- Left: Narrative & Upgrades -->
-        <div>
-          <h2 class="section-title" style="margin-bottom: 18px;">India's Definitive AI Innovation Catalyst</h2>
-          <p style="font-size: 17px; line-height: 1.65; margin-bottom: 24px;">
-            Across two blockbuster previous editions, the <strong>ET AI Hackathon</strong> has matured into India’s most trusted pipeline for discovering breakout technical talent, stress-testing proprietary enterprise tech stacks, and incubating deployable, production-ready AI solutions.
-          </p>
-
-          <h4 style="font-size: 16px; font-family: var(--font-mono); text-transform: uppercase; color: var(--text-highlight); margin-bottom: 14px; letter-spacing: 0.05em;">
-            What's New This Edition:
-          </h4>
-
-          <div class="about-features">
-            <div class="about-feat-item">
-              <div class="about-feat-icon">⚡</div>
-              <div>
-                <strong style="color: #fff; font-size: 16px;">Deeper Industry Integration</strong>
-                <p style="font-size: 14px; margin-top: 2px;">Real enterprise problem statements co-formulated with Fortune 500 CTOs and ET 500 business heads.</p>
-              </div>
-            </div>
-
-            <div class="about-feat-item">
-              <div class="about-feat-icon">🔄</div>
-              <div>
-                <strong style="color: #fff; font-size: 16px;">Stronger Solution Pipelines</strong>
-                <p style="font-size: 14px; margin-top: 2px;">From GitHub repository to enterprise pilot testbed in under 60 days with dedicated sandbox environments.</p>
-              </div>
-            </div>
-
-            <div class="about-feat-item">
-              <div class="about-feat-icon">🚀</div>
-              <div>
-                <strong style="color: #fff; font-size: 16px;">Clearer Paths to Deployment & Seed Grants</strong>
-                <p style="font-size: 14px; margin-top: 2px;">Pre-seed venture fast-track, GPU cloud credits, and direct commercial procurement pathways.</p>
-              </div>
-            </div>
-
-            <div class="about-feat-item">
-              <div class="about-feat-icon">🌐</div>
-              <div>
-                <strong style="color: #fff; font-size: 16px;">Agentic Workflows & Indic AI Focus</strong>
-                <p style="font-size: 14px; margin-top: 2px;">Dedicated sub-tracks for multi-modal autonomous agents and regional Indic language NLP models.</p>
-              </div>
-            </div>
+      <div class="sponsor-benefits-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; margin-top: 60px;">
+        
+        <div class="premium-card">
+          <div class="card-number">01</div>
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(99,102,241,0.2); color: #818cf8; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; font-size: 24px;">
+            <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
           </div>
+          <h3 style="font-size: 22px; color: #fff; margin-bottom: 12px; font-weight: 700;">Co-Branded Visibility</h3>
+          <p style="font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0;">Media creatives, newsletters, and hackathon microsite visibility across all digital co-branded assets.</p>
+        </div>
+        
+        <div class="premium-card">
+          <div class="card-number">02</div>
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(236,72,153,0.2); color: #f472b6; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; font-size: 24px;">
+            <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          </div>
+          <h3 style="font-size: 22px; color: #fff; margin-bottom: 12px; font-weight: 700;">Platform Adoption</h3>
+          <p style="font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0;">Platform, APIs, or tools used during the hackathon driving real-world usage from India's top builders.</p>
         </div>
 
+        <div class="premium-card">
+          <div class="card-number">03</div>
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(16,185,129,0.2); color: #34d399; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; font-size: 24px;">
+            <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+          </div>
+          <h3 style="font-size: 22px; color: #fff; margin-bottom: 12px; font-weight: 700;">Podcast Leadership</h3>
+          <p style="font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0;">Dedicated episode on ET's YouTube and social channels putting your voice at the centre of AI conversation.</p>
+        </div>
 
+        <div class="premium-card">
+          <div class="card-number">04</div>
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(245,158,11,0.2); color: #fbbf24; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; font-size: 24px;">
+            <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <h3 style="font-size: 22px; color: #fff; margin-bottom: 12px; font-weight: 700;">Hiring Access</h3>
+          <p style="font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0;">Direct pipeline to India's top AI talent. Validated builders shortlisted through rigorous evaluation.</p>
+        </div>
+
+        <div class="premium-card">
+          <div class="card-number">05</div>
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(56,189,248,0.2); color: #38bdf8; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; font-size: 24px;">
+            <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+          </div>
+          <h3 style="font-size: 22px; color: #fff; margin-bottom: 12px; font-weight: 700;">Candidate Workshop</h3>
+          <p style="font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0;">Direct engagement session with shortlisted participants to explore collaboration or recruitment.</p>
+        </div>
+
+        <div class="premium-card">
+          <div class="card-number">06</div>
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(167,139,250,0.2); color: #a78bfa; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; font-size: 24px;">
+            <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </div>
+          <h3 style="font-size: 22px; color: #fff; margin-bottom: 12px; font-weight: 700;">Website Banners</h3>
+          <p style="font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0;">Prime placement on The Economic Times homepage and landing pages reaching 50M+ readers.</p>
+        </div>
       </div>
     </div>
   </section>
-
-  <!-- ==========================================================================
-       06 FLAGSHIP INNOVATION CHALLENGES (CAROUSEL)
+<!-- ==========================================================================
+       05 WHO SHOULD BUILD IN ET AI HACKATHON?
        ========================================================================== -->
-  <section id="challenges" class="section-pad">
-    <div class="container">
-      <div class="challenges-header">
-        <div>
-          <h2 class="section-title">Sponsored Tracks & Problem Statements</h2>
-          <p class="section-desc">Choose your battleground. Win cash bounties, compute grants, and enterprise pilot contracts.</p>
-        </div>
-        <!-- Carousel Nav Buttons -->
-        <div style="display: flex; gap: 10px;">
-          <button type="button" id="carousel-prev-btn" class="iconbtn" aria-label="Previous challenges">‹</button>
-          <button type="button" id="carousel-next-btn" class="iconbtn" aria-label="Next challenges">›</button>
-        </div>
-      </div>
-
-      <!-- Filter Tabs -->
-      <div class="challenge-filter-tabs">
-        <button type="button" class="filter-tab active" data-filter="all">All Tracks (6)</button>
-        <button type="button" class="filter-tab" data-filter="fintech">FinTech & BFSI</button>
-        <button type="button" class="filter-tab" data-filter="indic">Indic AI & Speech</button>
-        <button type="button" class="filter-tab" data-filter="enterprise">Enterprise DevOps</button>
-        <button type="button" class="filter-tab" data-filter="health">Healthcare & Vision</button>
-        <button type="button" class="filter-tab" data-filter="cyber">Cyber & Zero-Day</button>
-        <button type="button" class="filter-tab" data-filter="green">Clean Energy</button>
-      </div>
-
-      <!-- Carousel Container & Track -->
-      <div class="carousel-container">
-        <div id="challenge-carousel-track" class="carousel-track">
-          <!-- Dynamically populated via app.js -->
-        </div>
-      </div>
-
-      <!-- Carousel Dots -->
-      <div id="carousel-dots-container" class="carousel-dots"></div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       07 WHO SHOULD PARTICIPATE
-       ========================================================================== -->
-  <section class="section-pad" style="background: rgba(13, 15, 21, 0.6); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+  <section id="who-should-build" class="section-pad">
     <div class="container">
       <div class="section-head centered">
         <h2 class="section-title">Who Should Build in ET AI Hackathon?</h2>
         <p class="section-desc">Whether you write low-level CUDA kernels or design high-converting multi-modal agent workflows, there is a place for you.</p>
       </div>
 
-      <div class="who-grid">
-        <!-- 1. AI Engineers & Developers -->
-        <div class="who-card card">
-          <div class="who-icon-wrapper">💻</div>
-          <h3 style="font-size: 22px; font-weight: 700;">AI Developers & Hackers</h3>
-          <p style="font-size: 14px; color: var(--text-muted);">Full-stack AI engineers, PyTorch researchers, LLM fine-tuners, and backend builders wanting to benchmark against enterprise-grade datasets.</p>
-          <ul class="who-points">
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Build on real Fortune 500 API sandboxes</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Direct recruitment fast-track by sponsor CTOs</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> GPU cluster compute credits for all finalists</li>
-          </ul>
-        </div>
-
-        <!-- 2. Students & University Researchers -->
-        <div class="who-card card">
-          <div class="who-icon-wrapper">🎓</div>
-          <h3 style="font-size: 22px; font-weight: 700;">Students & Researchers</h3>
-          <p style="font-size: 14px; color: var(--text-muted);">Undergraduate, graduate, and PhD scholars from IITs, BITS, IIITs, NITs, and top engineering universities eager to gain national acclaim.</p>
-          <ul class="who-points">
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Verified Certificate of Excellence signed by ET leadership</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 1-on-1 mentorship from seasoned industry architects</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Campus spotlight & resume accreditation</li>
-          </ul>
-        </div>
-
-        <!-- 3. Product Thinkers & System Architects -->
-        <div class="who-card card">
-          <div class="who-icon-wrapper">🧠</div>
-          <h3 style="font-size: 22px; font-weight: 700;">Product Thinkers & Designers</h3>
-          <p style="font-size: 14px; color: var(--text-muted);">Product managers, domain specialists, and UI/UX designers who transform raw foundational models into intuitive, defensible customer products.</p>
-          <ul class="who-points">
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Test user journey and commercial viability</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Pitch directly to venture capitalists and angel funds</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Featured in ET Startup & Product showcases</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       08 HACKATHON JOURNEY
-       ========================================================================== -->
-  <section id="journey" class="section-pad">
-    <div class="container">
-      <div class="section-head centered">
-        <h2 class="section-title">The Path to the Grand Finale</h2>
-        <p class="section-desc">A structured, multi-phase competition designed to nurture high-fidelity prototypes and commercial readiness.</p>
-      </div>
-
-      <div class="journey-timeline">
-        <!-- Phase 1 -->
-        <div class="journey-step">
-          <div class="step-marker">
-            <div class="step-number">01</div>
-            <div class="step-line"></div>
-          </div>
-          <div class="step-content">
-            <div class="step-card">
-              <span class="step-date-badge">PHASE 1 · OCT 15 – NOV 10, 2026</span>
-              <h3 style="font-size: 20px; font-weight: 700;">Registrations & Challenge Track Reveal</h3>
-              <p style="font-size: 14px; color: var(--text-muted);">
-                Participants register for free, form cross-functional teams (1-4 members), gain access to partner APIs and sandboxes, and choose their target innovation track.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Phase 2 -->
-        <div class="journey-step">
-          <div class="step-marker">
-            <div class="step-number">02</div>
-            <div class="step-line"></div>
-          </div>
-          <div class="step-content">
-            <div class="step-card">
-              <span class="step-date-badge">PHASE 2 · NOV 11 – NOV 28, 2026</span>
-              <h3 style="font-size: 20px; font-weight: 700;">Idea Submission & Architecture Prototype</h3>
-              <p style="font-size: 14px; color: var(--text-muted);">
-                Teams submit their solution design document, architecture diagram, GitHub repository draft, and 3-minute Loom video demo. Top 100 teams shortlisted.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Phase 3 -->
-        <div class="journey-step">
-          <div class="step-marker">
-            <div class="step-number">03</div>
-            <div class="step-line"></div>
-          </div>
-          <div class="step-content">
-            <div class="step-card">
-              <span class="step-date-badge">PHASE 3 · DEC 01 – DEC 15, 2026</span>
-              <h3 style="font-size: 20px; font-weight: 700;">Virtual Code Sprint & CXO Mentorship Hours</h3>
-              <p style="font-size: 14px; color: var(--text-muted);">
-                Shortlisted teams receive dedicated GPU clusters, 1-on-1 mentorship with sponsor engineering leaders, and rigorous benchmark evaluation. Top 25 finalists selected.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Phase 4 -->
-        <div class="journey-step">
-          <div class="step-marker">
-            <div class="step-number">04</div>
-          </div>
-          <div class="step-content">
-            <div class="step-card" style="border-color: var(--primary-color); background: rgba(225, 29, 72, 0.05);">
-              <span class="step-date-badge" style="color: var(--primary-light);">PHASE 4 · DEC 20 – DEC 21, 2026 · IN-PERSON</span>
-              <h3 style="font-size: 20px; font-weight: 700;">Offline Grand Finale & ET Spotlight Demo Day</h3>
-              <p style="font-size: 14px; color: var(--text-muted);">
-                <!-- TODO: confirm the finale venue -->48-hour live code marathon in Bengaluru. Final pitches before a high-profile jury of CXOs, VCs, and editors, followed by the Awards Gala.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       09 WHY PARTICIPATE (FOR BUILDERS)
-       ========================================================================== -->
-  <section class="section-pad" style="background: rgba(13, 15, 21, 0.6); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
-    <div class="container">
-      <div class="section-head centered">
-        <h2 class="section-title">Why Compete in ET AI Hackathon?</h2>
-        <p class="section-desc">More than prize money—this is a launchpad for your technical career, startup, and national reputation.</p>
-      </div>
-
-      <div class="why-grid">
-        <div class="why-card card">
-          <div class="why-icon">💼</div>
-          <h3 style="font-size: 20px; font-weight: 700;">Elite Hiring Fast-Track</h3>
-          <p style="font-size: 14px; color: var(--text-muted);">Skip multiple rounds of automated screening. Interview directly with VP of Engineering and Lead Researchers at top tech firms.</p>
-        </div>
-
-        <div class="why-card card">
-          <div class="why-icon">🏆</div>
-          <h3 style="font-size: 20px; font-weight: 700;">₹40,00,000+ Prize Pool</h3>
-          <p style="font-size: 14px; color: var(--text-muted);">Direct cash awards, GPU compute grants, software licenses, and travel stipends for all offline grand finalists.</p>
-        </div>
-
-        <div class="why-card card">
-          <div class="why-icon">📰</div>
-          <h3 style="font-size: 20px; font-weight: 700;">National Media Visibility</h3>
-          <p style="font-size: 14px; color: var(--text-muted);">Winning projects are profiled on economictimes.indiatimes.com, ET Prime, and The Economic Times daily print newspaper.</p>
-        </div>
-
-        <div class="why-card card">
-          <div class="why-icon">📜</div>
-          <h3 style="font-size: 20px; font-weight: 700;">Verified ET Credential</h3>
-          <p style="font-size: 14px; color: var(--text-muted);">Cryptographically signed verifiable certificate of achievement backed by The Economic Times to elevate your portfolio.</p>
-        </div>
-      </div>
-
-      <div style="display: flex; justify-content: center; margin-top: 36px;">
-        <button type="button" class="btn btn-primary btn-lg open-builder-modal-btn">
-          Enroll in Builder Track (100% Free) ⚡
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       10 WHY SPONSOR & PARTNER (MAIN MARKETING CAMPAIGN SECTION)
-       ========================================================================== -->
-  <section id="sponsor" class="section-pad sponsor-section">
-    <div class="container">
-      <div class="section-head centered">
-        <div class="sponsor-highlight-badge">★ Enterprise Partnership Invitational 2026</div>
-        <h2 class="section-title">Why Sponsor the ET AI Hackathon?</h2>
-        <p class="section-desc" style="max-width: 760px;">
-          Co-create India's premier AI milestone with The Economic Times. Drive real-world developer platform adoption, acquire top 1% engineering talent, and position your brand leadership at the forefront of the generative revolution.
-        </p>
-      </div>
-
-      <!-- Previous partners: social proof for sponsors -->
-      <div class="logo-wall">
-        <p class="logo-wall-title">Brands that have partnered with previous editions</p>
-        <!-- TODO: replace each placeholder with a real partner logo (SVG/PNG, ~40px tall).
-             Only include brands that have approved logo usage. -->
-        <ul class="logo-wall-list">
-          <li class="logo-slot is-placeholder">Partner logo</li>
-          <li class="logo-slot is-placeholder">Partner logo</li>
-          <li class="logo-slot is-placeholder">Partner logo</li>
-          <li class="logo-slot is-placeholder">Partner logo</li>
-          <li class="logo-slot is-placeholder">Partner logo</li>
-          <li class="logo-slot is-placeholder">Partner logo</li>
-        </ul>
-      </div>
-
-      <!-- 6 Strategic Partner Pillars -->
-      <div class="partner-pillars-grid">
-        <!-- Pillar 01 -->
-        <div class="pillar-card">
-          <div class="pillar-number">PILLAR 01</div>
-          <h3 class="pillar-title">Co-Branded Omnichannel Visibility</h3>
-          <p class="pillar-desc">
-            Your brand showcased across media creatives, dedicated newsletters, daily print mentions, and the hackathon microsite—generating tens of millions of high-value business impressions.
-          </p>
-        </div>
-
-        <!-- Pillar 02 -->
-        <div class="pillar-card">
-          <div class="pillar-number">PILLAR 02</div>
-          <h3 class="pillar-title">Real Developer Platform & API Adoption</h3>
-          <p class="pillar-desc">
-            Your AI models, cloud infrastructure, SDKs, or developer tools become the mandatory building blocks during the code sprint—driving organic developer discovery and viral documentation usage.
-          </p>
-        </div>
-
-        <!-- Pillar 03 -->
-        <div class="pillar-card">
-          <div class="pillar-number">PILLAR 03</div>
-          <h3 class="pillar-title">ET Spotlight Leadership Podcast</h3>
-          <p class="pillar-desc">
-            A dedicated 25-minute video podcast episode with your CXO/CTO on The Economic Times’ official YouTube and digital audio channels, cementing your authority in India’s AI transformation.
-          </p>
-        </div>
-
-        <!-- Pillar 04 -->
-        <div class="pillar-card">
-          <div class="pillar-number">PILLAR 04</div>
-          <h3 class="pillar-title">Direct Top 1% Talent Recruitment</h3>
-          <p class="pillar-desc">
-            Direct, privileged access to an audited pipeline of India’s top AI practitioners. Review validated GitHub commits, architecture benchmarks, and pre-screened finalists before anyone else.
-          </p>
-        </div>
-
-        <!-- Pillar 05 -->
-        <div class="pillar-card">
-          <div class="pillar-number">PILLAR 05</div>
-          <h3 class="pillar-title">Private Finalist Workshop & Roundtable</h3>
-          <p class="pillar-desc">
-            Host an exclusive, closed-door masterclass and roundtable session with shortlisted candidates to explore bespoke commercial pilots, tech licensing, or immediate team hiring.
-          </p>
-        </div>
-
-        <!-- Pillar 06 -->
-        <div class="pillar-card">
-          <div class="pillar-number">PILLAR 06</div>
-          <h3 class="pillar-title">Prime Placement on ET Digital (50M+ Readers)</h3>
-          <p class="pillar-desc">
-            High-impact banner real estate on The Economic Times homepage and dedicated hackathon hubs, placing your enterprise in front of key business decision-makers, policymakers, and investors.
-          </p>
-        </div>
-      </div>
-
-      <!-- Audience: what a sponsor is actually buying -->
-      <!-- TODO: fill every dashed value from Edition 2 registration data and ET audience data
-           (e.g. Comscore / internal analytics), and add the source line below. -->
-      <div class="audience-block">
-        <div class="audience-col">
-          <h3 class="audience-title">Who competes</h3>
-          <p class="audience-sub">Participant profile from previous editions</p>
-          <dl class="audience-stats">
-            <div><dt>Builders and students</dt><dd>5,000+</dd></div>
-            <div><dt>Campuses</dt><dd>100+</dd></div>
-            <div><dt>Working professionals</dt><dd class="is-placeholder">—%</dd></div>
-            <div><dt>3+ years of experience</dt><dd class="is-placeholder">—%</dd></div>
-          </dl>
-        </div>
-        <div class="audience-col">
-          <h3 class="audience-title">Who sees your brand</h3>
-          <p class="audience-sub">The Economic Times audience</p>
-          <dl class="audience-stats">
-            <div><dt>Monthly readers</dt><dd>50M+</dd></div>
-            <div><dt>Cities represented</dt><dd>20+</dd></div>
-            <div><dt>Manager level and above</dt><dd class="is-placeholder">—%</dd></div>
-            <div><dt>Readers in top 8 metros</dt><dd class="is-placeholder">—%</dd></div>
-          </dl>
-        </div>
-        <div class="audience-channels">
-          <span class="audience-channels-label">Your brand appears across</span>
-          <ul>
-            <li>economictimes.com</li>
-            <li>ET Prime</li>
-            <li>The Economic Times print</li>
-            <li>ET newsletters</li>
-            <li>ET Spotlight podcast</li>
-            <li>Hackathon microsite</li>
-          </ul>
-        </div>
-        <p class="audience-source is-placeholder">Source: add data source and date</p>
-      </div>
-
-      <!-- How Enterprise Partnership Works (3 Steps) -->
-      <div class="how-it-works-box">
-        <h3 style="font-size: 22px; font-weight: 700; color: #fff;">How the Partnership Flywheel Works:</h3>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px;">
         
-        <div class="steps-row">
-          <div class="step-item">
-            <span class="step-num-large">01</span>
-            <div>
-              <strong style="color: #fff; font-size: 16px;">You Define the Challenge & Tech Stack</strong>
-              <p style="font-size: 14px; margin-top: 4px;">Frame a high-stakes enterprise problem statement that matters to your industry or showcase your proprietary AI infrastructure.</p>
-            </div>
-          </div>
-
-          <div class="step-item">
-            <span class="step-num-large">02</span>
-            <div>
-              <strong style="color: #fff; font-size: 16px;">5,000+ Builders Compete on Your Platform</strong>
-              <p style="font-size: 14px; margin-top: 4px;">India's sharpest developers stress-test, build upon, and ship production prototypes powered by your technology.</p>
-            </div>
-          </div>
-
-          <div class="step-item">
-            <span class="step-num-large">03</span>
-            <div>
-              <strong style="color: #fff; font-size: 16px;">You Gain Privileged Commercial Access</strong>
-              <p style="font-size: 14px; margin-top: 4px;">Receive working proof-of-concepts, vetted talent for immediate hire, co-branded editorial visibility, and first-mover insights.</p>
-            </div>
-          </div>
+        <!-- Card 1 -->
+        <div class="card" style="background: linear-gradient(145deg, #1A1F2E 0%, #0F121C 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 32px; display: flex; flex-direction: column; position: relative; overflow: hidden;">
+          <div style="font-size: 48px; margin-bottom: 20px;">💻</div>
+          <h3 style="color: #fff; font-size: 22px; font-weight: 800; margin-bottom: 12px; line-height: 1.3;">AI Developers & Hackers</h3>
+          <p style="color: rgba(255,255,255,0.7); font-size: 15px; line-height: 1.6; margin-bottom: 24px; flex-grow: 1;">Full-stack AI engineers, PyTorch researchers, LLM fine-tuners, and backend builders wanting to benchmark against enterprise-grade datasets.</p>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; color: rgba(255,255,255,0.9); font-size: 14px;">
+            <li style="display: flex; gap: 12px;"><span style="color: #4ade80;">✓</span> Build on real Fortune 500 API sandboxes</li>
+            <li style="display: flex; gap: 12px;"><span style="color: #4ade80;">✓</span> Direct recruitment fast-track by sponsor CTOs</li>
+            <li style="display: flex; gap: 12px;"><span style="color: #4ade80;">✓</span> GPU cluster compute credits for all finalists</li>
+          </ul>
         </div>
+
+        <!-- Card 2 -->
+        <div class="card" style="background: linear-gradient(145deg, #1A1F2E 0%, #0F121C 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 32px; display: flex; flex-direction: column; position: relative; overflow: hidden;">
+          <div style="font-size: 48px; margin-bottom: 20px;">🎓</div>
+          <h3 style="color: #fff; font-size: 22px; font-weight: 800; margin-bottom: 12px; line-height: 1.3;">Students & Researchers</h3>
+          <p style="color: rgba(255,255,255,0.7); font-size: 15px; line-height: 1.6; margin-bottom: 24px; flex-grow: 1;">Undergraduate, graduate, and PhD scholars from IITs, BITS, IIITs, NITs, and top engineering universities eager to gain national acclaim.</p>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; color: rgba(255,255,255,0.9); font-size: 14px;">
+            <li style="display: flex; gap: 12px;"><span style="color: #60a5fa;">✓</span> Verified Certificate of Excellence signed by ET leadership</li>
+            <li style="display: flex; gap: 12px;"><span style="color: #60a5fa;">✓</span> 1-on-1 mentorship from seasoned industry architects</li>
+            <li style="display: flex; gap: 12px;"><span style="color: #60a5fa;">✓</span> Campus spotlight & resume accreditation</li>
+          </ul>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card" style="background: linear-gradient(145deg, #1A1F2E 0%, #0F121C 100%); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 32px; display: flex; flex-direction: column; position: relative; overflow: hidden;">
+          <div style="font-size: 48px; margin-bottom: 20px;">🧠</div>
+          <h3 style="color: #fff; font-size: 22px; font-weight: 800; margin-bottom: 12px; line-height: 1.3;">Product Thinkers & Designers</h3>
+          <p style="color: rgba(255,255,255,0.7); font-size: 15px; line-height: 1.6; margin-bottom: 24px; flex-grow: 1;">Product managers, domain specialists, and UI/UX designers who transform raw foundational models into intuitive, defensible customer products.</p>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; color: rgba(255,255,255,0.9); font-size: 14px;">
+            <li style="display: flex; gap: 12px;"><span style="color: #f472b6;">✓</span> Test user journey and commercial viability</li>
+            <li style="display: flex; gap: 12px;"><span style="color: #f472b6;">✓</span> Pitch directly to venture capitalists and angel funds</li>
+            <li style="display: flex; gap: 12px;"><span style="color: #f472b6;">✓</span> Featured in ET Startup & Product showcases</li>
+          </ul>
+        </div>
+
+      </div>
+      
+      <!-- Responsive styling embedded -->
+      <style>
+        @media (max-width: 900px) {
+          #who-should-build > .container > div {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      </style>
+      
+    </div>
+  </section>
+<!-- ==========================================================================
+       08 WHO SEES YOUR BRAND — THE ECONOMIC TIMES AUDIENCE
+       ========================================================================== -->
+  <section id="audience" class="section-pad" style="background: var(--bg-surface-elevated); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+  <div class="container">
+    <div class="section-head centered">
+      <h2 class="section-title">Who Sees Your Brand</h2>
+      <p class="section-desc">The Economic Times audience — India's most influential business readership.</p>
+    </div>
+
+    <div class="audience-block" style="display: flex; flex-wrap: wrap; gap: 32px; margin-top: 48px;">
+      
+      <div class="audience-col animated-card" style="flex: 1; min-width: 300px; background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); border-top: 4px solid var(--primary-color); box-shadow: 0 20px 40px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+        <h3 class="audience-title" style="color: #fff; font-size: 26px; margin-bottom: 8px; font-weight: 700;">Who competes</h3>
+        <p class="audience-sub" style="color: #94a3b8; margin-bottom: 32px; font-size: 15px;">Participant profile from previous editions</p>
+        
+        <dl class="audience-stats" style="display: grid; gap: 24px; margin: 0;">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px;">
+            <dt style="font-size: 16px; font-weight: 500; color: #cbd5e1;">Builders and students</dt><dd style="font-size: 22px; font-weight: 800; color: #fff; margin: 0;">5,000+</dd>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px;">
+            <dt style="font-size: 16px; font-weight: 500; color: #cbd5e1;">Campuses</dt><dd style="font-size: 22px; font-weight: 800; color: #fff; margin: 0;">100+</dd>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px;">
+            <dt style="font-size: 16px; font-weight: 500; color: #cbd5e1;">Working professionals</dt><dd style="font-size: 22px; font-weight: 800; color: #fff; margin: 0;">45%</dd>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 4px;">
+            <dt style="font-size: 16px; font-weight: 500; color: #cbd5e1;">3+ years of experience</dt><dd style="font-size: 22px; font-weight: 800; color: #fff; margin: 0;">30%</dd>
+          </div>
+        </dl>
       </div>
 
-      <!-- Partnership Tier Matrix -->
-      <div class="tiers-container">
-        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px;">
-          <div>
-            <h4 style="font-size: 20px; font-weight: 700; color: #fff;">Partnership Tier Comparison</h4>
-            <p style="font-size: 14px; color: var(--text-muted);">Custom packages tailored for technology platforms, cloud hyperscalers, and enterprise innovators.</p>
+      <div class="audience-col animated-card" style="flex: 1; min-width: 300px; background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); border-top: 4px solid #3b82f6; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+        <h3 class="audience-title" style="color: #fff; font-size: 26px; margin-bottom: 8px; font-weight: 700;">Who sees your brand</h3>
+        <p class="audience-sub" style="color: #94a3b8; margin-bottom: 32px; font-size: 15px;">The Economic Times audience</p>
+        
+        <dl class="audience-stats" style="display: grid; gap: 24px; margin: 0;">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px;">
+            <dt style="font-size: 16px; font-weight: 500; color: #cbd5e1;">Monthly readers</dt><dd style="font-size: 22px; font-weight: 800; color: #fff; margin: 0;">50M+</dd>
           </div>
-          <span class="badge badge-primary">LIMITED CAPACITY PER TRACK</span>
-        </div>
-
-        <div class="tiers-table-wrapper">
-          <table class="tiers-table">
-            <thead>
-              <tr>
-                <th>Deliverable / Asset</th>
-                <th>Title Partner</th>
-                <th>Track Innovation Partner</th>
-                <th>Platform & Cloud Partner</th>
-                <th>Associate Partner</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Exclusive Track Problem Statement</strong></td>
-                <td>✓ 2 Track Statements</td>
-                <td>✓ 1 Track Statement</td>
-                <td>✓ Sandbox Provider</td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <td><strong>ET Spotlight Podcast Interview</strong></td>
-                <td>✓ Keynote Episode</td>
-                <td>✓ Dedicated Panel</td>
-                <td>✓ Tech Briefing</td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <td><strong>Direct Candidate CV & GitHub Access</strong></td>
-                <td>✓ Full Finalist Database</td>
-                <td>✓ Track Finalists</td>
-                <td>✓ Track Finalists</td>
-                <td>✓ Shortlist Access</td>
-              </tr>
-              <tr>
-                <td><strong>ET Homepage & Digital Banner Media</strong></td>
-                <td>✓ Premium Top-Tier</td>
-                <td>✓ Targeted Category</td>
-                <td>✓ Hackathon Microsite</td>
-                <td>✓ Logo Wall</td>
-              </tr>
-              <tr>
-                <td><strong>Grand Finale Jury & Keynote Slot</strong></td>
-                <td>✓ Grand Jury Chair</td>
-                <td>✓ Track Jury Seat</td>
-                <td>✓ Mentor Seat</td>
-                <td>✓ VIP Passes</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px;">
+            <dt style="font-size: 16px; font-weight: 500; color: #cbd5e1;">Cities represented</dt><dd style="font-size: 22px; font-weight: 800; color: #fff; margin: 0;">20+</dd>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px;">
+            <dt style="font-size: 16px; font-weight: 500; color: #cbd5e1;">Manager level & above</dt><dd style="font-size: 22px; font-weight: 800; color: #fff; margin: 0;">65%</dd>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 4px;">
+            <dt style="font-size: 16px; font-weight: 500; color: #cbd5e1;">Readers in top 8 metros</dt><dd style="font-size: 22px; font-weight: 800; color: #fff; margin: 0;">70%</dd>
+          </div>
+        </dl>
       </div>
 
-      <!-- Call to Action -->
-      <div style="display: flex; justify-content: center; gap: 16px; margin-top: 40px; flex-wrap: wrap;">
-        <a href="#lead" class="btn btn-primary btn-lg" data-track="sponsor_partner_click">
-          Partner with us
-        </a>
-        <button type="button" class="btn btn-secondary btn-lg" data-deck-request data-track="deck_request_click">
-          Get the sponsor deck (PDF)
-        </button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       HOW IT WORKS (HORIZONTAL)
+       ========================================================================== -->
+  <section id="how-it-works" class="section-pad" style="background: var(--bg-deep); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-head centered">
+        <h2 class="section-title">How it works</h2>
+      </div>
+      <div class="how-it-works-grid" style="display: flex; gap: 32px; align-items: stretch; justify-content: space-between;">
+        
+        <div style="flex: 1; padding: 32px 24px; background: #0F172A; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; position: relative; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+          <strong style="color: #fff; font-size: 20px; display: block; margin-bottom: 12px;">You Bring the Challenge</strong>
+          <p style="font-size: 15px; color: rgba(255,255,255,0.7); margin: 0; line-height: 1.5;">Define a real business problem worth solving.</p>
+          <div class="arrow-right" style="position: absolute; right: -28px; top: 50%; transform: translateY(-50%); font-size: 32px; color: var(--primary-color);">➔</div>
+        </div>
+
+        <div style="flex: 1; padding: 32px 24px; background: #0F172A; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; position: relative; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+          <strong style="color: #fff; font-size: 20px; display: block; margin-bottom: 12px;">Builders Compete on Your Platform</strong>
+          <p style="font-size: 15px; color: rgba(255,255,255,0.7); margin: 0; line-height: 1.5;">Top AI minds use your stack to build what they ship.</p>
+          <div class="arrow-right" style="position: absolute; right: -28px; top: 50%; transform: translateY(-50%); font-size: 32px; color: var(--primary-color);">➔</div>
+        </div>
+
+        <div style="flex: 1; padding: 32px 24px; background: #0F172A; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; position: relative; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+          <strong style="color: #fff; font-size: 20px; display: block; margin-bottom: 12px;">You Hire or Acquire the Best</strong>
+          <p style="font-size: 15px; color: rgba(255,255,255,0.7); margin: 0; line-height: 1.5;">Shortlist top teams for direct hiring or acquire their solutions.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  
+
+  
+
+  
+
+  <!-- ==========================================================================
+       07 MEDIA COVERAGE & PREVIOUS EDITIONS
+       ========================================================================== -->
+  <section id="media" class="section-pad" style="background: var(--bg-surface);">
+    <div class="container">
+      <div class="section-head centered">
+        <h2 class="section-title">Media & Reach</h2>
+        <p class="section-desc">Experience the unmatched visibility of partnering with India's largest business news ecosystem.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: stretch;">
+        <!-- Left: Media Channels -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <div class="card" style="padding: 24px; border-left: 4px solid #0077b5;">
+            <h3 style="font-size: 18px; color: var(--text-highlight); margin-bottom: 8px;">LinkedIn</h3>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Featured across ET's LinkedIn with 10M+ professional followers. Hackathon highlights, winner stories, and sponsor spotlights.</p>
+            <a href="https://www.linkedin.com/company/the-economic-times/" target="_blank" rel="noopener" style="font-size: 14px; font-weight: 600; color: var(--primary-color);">View on LinkedIn →</a>
+          </div>
+          
+          <div class="card" style="padding: 24px; border-left: 4px solid #ff0000;">
+            <h3 style="font-size: 18px; color: var(--text-highlight); margin-bottom: 8px;">YouTube</h3>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Full event recaps, keynote sessions, winner interviews, and CXO panel discussions on The Economic Times YouTube channel.</p>
+            <a href="https://www.youtube.com/@EconomicTimes" target="_blank" rel="noopener" style="font-size: 14px; font-weight: 600; color: var(--primary-color);">Watch on YouTube →</a>
+          </div>
+
+          <div class="card" style="padding: 24px; border-left: 4px solid var(--primary-color);">
+            <h3 style="font-size: 18px; color: var(--text-highlight); margin-bottom: 8px;">economictimes.com</h3>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Dedicated editorial coverage on India's #1 business news platform with 50M+ monthly readers and ET Prime deep-dives.</p>
+            <a href="https://economictimes.indiatimes.com/" target="_blank" rel="noopener" style="font-size: 14px; font-weight: 600; color: var(--primary-color);">Read on ET →</a>
+          </div>
+
+          <div class="card" style="padding: 24px; border-left: 4px solid #000000;">
+            <h3 style="font-size: 18px; color: var(--text-highlight); margin-bottom: 8px;">X (Twitter)</h3>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px;">Live event updates, real-time hackathon coverage, and trending discussions with millions of impressions.</p>
+            <a href="https://x.com/EconomicTimes" target="_blank" rel="noopener" style="font-size: 14px; font-weight: 600; color: var(--primary-color);">Follow on X →</a>
+          </div>
+        </div>
+
+        <!-- Right: Playcard & Image -->
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 24px;">
+          <!-- Slideshow Card -->
+          <div class="card" style="flex: 1; border-radius: var(--radius-lg); overflow: hidden; position: relative; min-height: 450px; background: #000;">
+            
+            <img id="live-highlights-img" src="assets/images/reach/reach_1.png" alt="Event" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; object-fit: cover; transition: opacity 0.8s ease-in-out;">
+            
+            <div style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 56px 32px 32px; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);">
+              <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                <div>
+                  <span style="background: var(--primary-color); color: #fff; font-size: 12px; font-weight: bold; text-transform: uppercase; padding: 4px 12px; border-radius: 4px; display: inline-block; margin-bottom: 12px;">Live Highlights</span>
+                  <h3 style="color: #fff; font-size: 28px; font-weight: 800; margin: 0;">Experience the Energy</h3>
+                </div>
+                
+                <!-- Pagination Dots -->
+                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                  <div class="slide-dot" style="width: 10px; height: 10px; border-radius: 50%; background: #fff; transition: background 0.3s ease;"></div>
+                  <div class="slide-dot" style="width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: background 0.3s ease;"></div>
+                  <div class="slide-dot" style="width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: background 0.3s ease;"></div>
+                  <div class="slide-dot" style="width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: background 0.3s ease;"></div>
+                </div>
+              </div>
+            </div>
+            
+            <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                const img = document.getElementById('live-highlights-img');
+                const dots = document.querySelectorAll('.slide-dot');
+                const images = [
+                  'assets/images/reach/reach_1.png',
+                  'assets/images/reach/reach_2.png',
+                  'assets/images/reach/reach_3.png',
+                  'assets/images/reach/reach_4.png'
+                ];
+                let currentIndex = 0;
+                
+                setInterval(() => {
+                  // Fade out
+                  img.style.opacity = 0;
+                  
+                  setTimeout(() => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    img.src = images[currentIndex];
+                    // Fade in
+                    img.style.opacity = 1;
+                    
+                    // Update dots
+                    dots.forEach((dot, index) => {
+                      if (index === currentIndex) {
+                        dot.style.background = '#fff';
+                      } else {
+                        dot.style.background = 'rgba(255,255,255,0.4)';
+                      }
+                    });
+                  }, 800); // Wait for fade out to complete before changing source
+                  
+                }, 4000); // Change image every 4 seconds
+              });
+            </script>
+          </div>
+        </div>
+    </div>
+  </section>
+
+<section id="photos" class="section-pad" style="background: var(--bg-surface-elevated); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-head centered">
+        <h2 class="section-title">Moments from Previous Editions</h2>
+        <p class="section-desc">The energy, innovation, and community spirit captured in motion.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+        
+        <!-- Video 1 -->
+        <div class="card" style="border-radius: var(--radius-lg); overflow: hidden; position: relative; aspect-ratio: 9/16; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+          <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="assets/videos/genai_vid1.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="card" style="border-radius: var(--radius-lg); overflow: hidden; position: relative; aspect-ratio: 9/16; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+          <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="assets/videos/genai_vid2.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="card" style="border-radius: var(--radius-lg); overflow: hidden; position: relative; aspect-ratio: 9/16; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+          <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="assets/videos/genai_vid3.mp4" type="video/mp4">
+          </video>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ==========================================================================
-       PARTNERSHIP ENQUIRY FORM (main conversion point for the campaign)
-       ========================================================================== -->
-  <section id="lead" class="section-pad lead-section" aria-labelledby="lead-heading">
+<section id="videos" class="section-pad" style="background: var(--bg-deep); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-head centered">
+        <h2 class="section-title">Featured Videos</h2>
+        <p class="section-desc">Watch keynotes, final presentations, and interviews from previous editions of the ET AI Hackathon.</p>
+      </div>
+
+      <div class="videos-grid">
+        <!-- Video 1 -->
+        <div class="video-card card" data-youtube-id="" role="button" tabindex="0">
+          <div class="video-thumb">
+            <div class="play-button-pulse">▶</div>
+            <span class="badge" style="position: absolute; bottom: 12px; right: 12px;">04:32</span>
+          </div>
+          <div style="padding: 16px 20px;">
+            <div class="mono" style="font-size: 12px; color: #fff;">FINALE RECAP</div>
+            <h3 style="font-size: 17px; font-weight: 700; margin-top: 4px;">ET AI Hackathon Edition 2 Grand Finale Recap</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Relive the 48-hour continuous code sprint in Bengaluru featuring 200 finalists.</p>
+          </div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="video-card card" data-youtube-id="" role="button" tabindex="0">
+          <div class="video-thumb">
+            <div class="play-button-pulse">▶</div>
+            <span class="badge" style="position: absolute; bottom: 12px; right: 12px;">24:18</span>
+          </div>
+          <div style="padding: 16px 20px;">
+            <div class="mono" style="font-size: 12px; color: var(--secondary-color);">CXO PANEL</div>
+            <h3 style="font-size: 17px; font-weight: 700; margin-top: 4px;">CXO & Mentor Panel: What Enterprise AI Needs in 2026</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Leaders from Google Cloud, Infosys, and Nvidia discuss enterprise agentic roadmaps.</p>
+          </div>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="video-card card" data-youtube-id="" role="button" tabindex="0">
+          <div class="video-thumb">
+            <div class="play-button-pulse">▶</div>
+            <span class="badge" style="position: absolute; bottom: 12px; right: 12px;">06:45</span>
+          </div>
+          <div style="padding: 16px 20px;">
+            <div class="mono" style="font-size: 12px; color: var(--accent-purple);">WINNERS SPEAK</div>
+            <h3 style="font-size: 17px; font-weight: 700; margin-top: 4px;">Winners Journey: From Hackathon to Enterprise Contracts</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Aarav Mehta shares how winning Edition 2 unlocked contracts and media spotlight.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section id="lead" class="section-pad lead-section" aria-labelledby="lead-heading">
     <div class="container lead-grid">
 
       <div class="lead-intro">
@@ -883,344 +890,168 @@
     </div>
   </section>
 
+
+
+  
+
   <!-- ==========================================================================
-       11 PREVIOUS IMPACT / WINNERS
+       08 PARTNERSHIP ENQUIRY FORM (full conversion form)
        ========================================================================== -->
-  <section id="impact" class="section-pad">
-    <div class="container">
-      <div class="section-head centered">
-        <h2 class="section-title">Hall of Fame: Previous Edition Winners</h2>
-        <p class="section-desc">Projects that began as 48-hour hackathon commits and scaled into real enterprise pilots and venture-backed startups.</p>
-      </div>
-
-      <!-- TODO VERIFY: every team, project and outcome below must be real and approved before launch. -->
-      <div class="winners-grid">
-        <!-- Winner 1 -->
-        <div class="winner-card card">
-          <div class="winner-preview">
-            <div class="visual-mock" style="background: radial-gradient(circle at 50% 50%, rgba(225,29,72,0.2), transparent 70%); display:flex; align-items:center; justify-content:center; font-size:42px;">
-              🛡️
-            </div>
-            <div class="winner-badge">Winner · Edition 2</div>
-          </div>
-          <div class="winner-body">
-            <div class="winner-team">Team NeuroClaim · IIT Bombay & IIIT-H</div>
-            <h3 style="font-size: 18px; font-weight: 700;">NeuroClaim AI Sentinel</h3>
-            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">
-              Multi-modal graph RAG system that flags fraudulent medical claims in under 300ms. Tested on 1.2M claims during the hackathon.
-            </p>
-            <div style="margin-top: 8px; font-size: 12px; color: #22c55e; font-family: var(--font-mono);">
-              STATUS: Commercial pilot acquired with leading health insurer
-            </div>
-          </div>
-        </div>
-
-        <!-- Winner 2 -->
-        <div class="winner-card card">
-          <div class="winner-preview">
-            <div class="visual-mock" style="background: radial-gradient(circle at 50% 50%, rgba(6,182,212,0.2), transparent 70%); display:flex; align-items:center; justify-content:center; font-size:42px;">
-              🗣️
-            </div>
-            <div class="winner-badge">Runner-up · Edition 2</div>
-          </div>
-          <div class="winner-body">
-            <div class="winner-team">Team BhashaLLM · BITS Pilani</div>
-            <h3 style="font-size: 18px; font-weight: 700;">IndicVoice Low-Resource RAG</h3>
-            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">
-              Sub-second conversational audio model engineered for code-mixed Hindi, Marathi, and Kannada financial advisory workflows.
-            </p>
-            <div style="margin-top: 8px; font-size: 12px; color: #22c55e; font-family: var(--font-mono);">
-              STATUS: Raised $350k seed round from top venture syndicate
-            </div>
-          </div>
-        </div>
-
-        <!-- Winner 3 -->
-        <div class="winner-card card">
-          <div class="winner-preview">
-            <div class="visual-mock" style="background: radial-gradient(circle at 50% 50%, rgba(139,92,246,0.2), transparent 70%); display:flex; align-items:center; justify-content:center; font-size:42px;">
-              🛰️
-            </div>
-            <div class="winner-badge">Winner · Edition 1</div>
-          </div>
-          <div class="winner-body">
-            <div class="winner-team">Team AgriSense · IIT Madras</div>
-            <h3 style="font-size: 18px; font-weight: 700;">HyperSpectral Crop Diagnostix</h3>
-            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">
-              Satellite imagery analysis combined with on-device vision models to detect early pest infestation across 40,000 hectares of cropland.
-            </p>
-            <div style="margin-top: 8px; font-size: 12px; color: #22c55e; font-family: var(--font-mono);">
-              STATUS: Deployed across 3 state agriculture boards
-            </div>
-          </div>
-        </div>
-
-        <!-- Winner 4 -->
-        <div class="winner-card card">
-          <div class="winner-preview">
-            <div class="visual-mock" style="background: radial-gradient(circle at 50% 50%, rgba(16,185,129,0.2), transparent 70%); display:flex; align-items:center; justify-content:center; font-size:42px;">
-              📊
-            </div>
-            <div class="winner-badge">Runner-up · Edition 1</div>
-          </div>
-          <div class="winner-body">
-            <div class="winner-team">Team FinGraph · DTU Delhi</div>
-            <h3 style="font-size: 18px; font-weight: 700;">MarketPulse Algorithmic Auditor</h3>
-            <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">
-              Real-time anomaly detector monitoring dark-pool transactions and high-frequency spoofing patterns across national exchanges.
-            </p>
-            <div style="margin-top: 8px; font-size: 12px; color: #22c55e; font-family: var(--font-mono);">
-              STATUS: 3 core members hired by Global Investment Bank
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- ==========================================================================
-       12 VIDEOS OF PREVIOUS EDITIONS
+       09 HALL OF FAME: PREVIOUS EDITION WINNERS
+       ========================================================================== -->
+  
+
+  <!-- ==========================================================================
+       10 FEATURED VIDEOS
        ========================================================================== -->
   <!-- TODO: paste each video's YouTube ID into data-youtube-id. The section stays hidden until at least one is set. -->
-  <section id="videos" class="section-pad" style="background: rgba(13, 15, 21, 0.6); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
-    <div class="container">
-      <div class="section-head centered">
-        <h2 class="section-title">See the Energy in Action</h2>
-        <p class="section-desc">Watch keynotes, final presentations, and interviews from previous editions of the ET AI Hackathon.</p>
-      </div>
-
-      <div class="videos-grid">
-        <!-- Video 1 -->
-        <div class="video-card card" data-youtube-id="" role="button" tabindex="0">
-          <div class="video-thumb">
-            <div class="play-button-pulse">▶</div>
-            <span class="badge" style="position: absolute; bottom: 12px; right: 12px;">04:32</span>
-          </div>
-          <div style="padding: 16px 20px;">
-            <div class="mono" style="font-size: 12px; color: var(--primary-light);">FINALE RECAP</div>
-            <h3 style="font-size: 17px; font-weight: 700; margin-top: 4px;">ET AI Hackathon Edition 2 Grand Finale Recap</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Relive the 48-hour continuous code sprint in Bengaluru featuring 200 finalists.</p>
-          </div>
-        </div>
-
-        <!-- Video 2 -->
-        <div class="video-card card" data-youtube-id="" role="button" tabindex="0">
-          <div class="video-thumb">
-            <div class="play-button-pulse">▶</div>
-            <span class="badge" style="position: absolute; bottom: 12px; right: 12px;">24:18</span>
-          </div>
-          <div style="padding: 16px 20px;">
-            <div class="mono" style="font-size: 12px; color: var(--secondary-color);">CXO PANEL</div>
-            <h3 style="font-size: 17px; font-weight: 700; margin-top: 4px;">CXO & Mentor Panel: What Enterprise AI Needs in 2026</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Leaders from Google Cloud, Infosys, and Nvidia discuss enterprise agentic roadmaps.</p>
-          </div>
-        </div>
-
-        <!-- Video 3 -->
-        <div class="video-card card" data-youtube-id="" role="button" tabindex="0">
-          <div class="video-thumb">
-            <div class="play-button-pulse">▶</div>
-            <span class="badge" style="position: absolute; bottom: 12px; right: 12px;">06:45</span>
-          </div>
-          <div style="padding: 16px 20px;">
-            <div class="mono" style="font-size: 12px; color: var(--accent-purple);">WINNERS SPEAK</div>
-            <h3 style="font-size: 17px; font-weight: 700; margin-top: 4px;">Winners Journey: From Hackathon to Enterprise Contracts</h3>
-            <p style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Aarav Mehta shares how winning Edition 2 unlocked contracts and media spotlight.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- ==========================================================================
-       JURY & MENTORS
+       12 LAST EDITION PHOTOS
        ========================================================================== -->
-  <!-- TODO: replace the placeholder cards with confirmed jury members (photo, name, title, company).
-       Hide this section until at least 4 names are confirmed. -->
-  <section id="jury" class="section-pad">
-    <div class="container">
-      <div class="section-head centered">
-        <h2 class="section-title">Jury and mentors</h2>
-        <p class="section-desc">CXOs, investors and ET editors who will judge the Grand Finale and mentor shortlisted teams.</p>
-      </div>
-      <div class="jury-grid">
-        <div class="jury-card is-placeholder"><div class="jury-photo"></div><div class="jury-name">Jury member</div><div class="jury-role">Title, Company</div></div>
-        <div class="jury-card is-placeholder"><div class="jury-photo"></div><div class="jury-name">Jury member</div><div class="jury-role">Title, Company</div></div>
-        <div class="jury-card is-placeholder"><div class="jury-photo"></div><div class="jury-name">Jury member</div><div class="jury-role">Title, Company</div></div>
-        <div class="jury-card is-placeholder"><div class="jury-photo"></div><div class="jury-name">Jury member</div><div class="jury-role">Title, Company</div></div>
-      </div>
-    </div>
-  </section>
+  
+  <!-- ==========================================================================
+       MEDIA COVERAGE & SLIDESHOW
+       ========================================================================== -->
+  
+
+
+
 
   <!-- ==========================================================================
        13 TESTIMONIALS
        ========================================================================== -->
-  <section class="section-pad">
-    <div class="container">
-      <div class="section-head centered">
-        <h2 class="section-title">What Our Community Says</h2>
-        <p class="section-desc">Voices from enterprise partners, participating hackers, and seasoned mentors.</p>
-      </div>
-
-      <!-- TODO VERIFY: use only real, approved quotes with the person's written consent. -->
-      <div class="testimonials-grid">
-        <!-- Partner Testimonial -->
-        <div class="quote-card card">
-          <div class="quote-mark">“</div>
-          <p class="quote-text">
-            “Partnering with the ET AI Hackathon gave our developer platform more production workloads in 48 hours than traditional B2B marketing achieved in six months. The caliber of solutions and national editorial coverage was unparalleled.”
-          </p>
-          <div class="quote-author">
-            <div class="author-avatar">RD</div>
-            <div>
-              <div style="font-weight: 700; color: #fff;">Rohit Deshmukh</div>
-              <div style="font-size: 13px; color: var(--text-muted);">VP & Chief AI Architect, Leading BFSI Enterprise</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Participant Testimonial -->
-        <div class="quote-card card">
-          <div class="quote-mark">“</div>
-          <p class="quote-text">
-            “Winning Edition 2 completely transformed our lives. Within 48 hours of pitching on the ET Demo Day, we were profiled on ET Prime and received 4 term-sheet offers from angel investors. This is the real deal.”
-          </p>
-          <div class="quote-author">
-            <div class="author-avatar">SK</div>
-            <div>
-              <div style="font-weight: 700; color: #fff;">Sanya Kapoor</div>
-              <div style="font-size: 13px; color: var(--text-muted);">Lead Researcher, NeuroClaim AI (IIT Bombay)</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Mentor Testimonial -->
-        <div class="quote-card card">
-          <div class="quote-mark">“</div>
-          <p class="quote-text">
-            “The Economic Times brings unmatched gravitas. When students and engineers build here, they aren't building toy apps; they are solving real sovereign bottlenecks in Indian infrastructure, medicine, and finance.”
-          </p>
-          <div class="quote-author">
-            <div class="author-avatar">AK</div>
-            <div>
-              <div style="font-weight: 700; color: #fff;">Dr. Anand Krishnamurthy</div>
-              <div style="font-size: 13px; color: var(--text-muted);">Partner, DeepTech Ventures & AI Mentor</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- ==========================================================================
        14 FAQ ACCORDION
        ========================================================================== -->
-  <section id="faq" class="section-pad" style="background: rgba(13, 15, 21, 0.6); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
-    <div class="container">
-      <div class="section-head centered">
-        <h2 class="section-title">Everything You Need to Know</h2>
-        <p class="section-desc">Got questions about participating or partnering? Find instant answers below.</p>
-      </div>
-
-      <div class="faq-wrap">
-        <!-- Live Search Box -->
-        <div class="faq-search-box">
-          <input type="text" id="faq-search-input" class="faq-input" placeholder="🔍 Search questions (e.g. 'IP', 'fees', 'sponsorship', 'eligibility')...">
-        </div>
-
-        <!-- FAQ Items -->
-        <details class="faq-item" open>
-          <summary>
-            <span>Who is eligible to participate in the hackathon?</span>
-            <span class="faq-toggle-icon">+</span>
-          </summary>
-          <div class="faq-answer">
-            The hackathon is open to undergraduate and graduate students, professional software developers, data scientists, AI researchers, and early-stage startup teams across India. Working professionals and collegiate developers may form teams together.
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary>
-            <span>Is registration completely free for participants?</span>
-            <span class="faq-toggle-icon">+</span>
-          </summary>
-          <div class="faq-answer">
-            Yes! 100% free. There is zero registration fee. Selected finalists invited to the offline Grand Finale in Bengaluru receive complimentary meals, official ET swag, GPU compute credits, and travel stipends for shortlisted intercity teams.
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary>
-            <span>What is the permitted team size?</span>
-            <span class="faq-toggle-icon">+</span>
-          </summary>
-          <div class="faq-answer">
-            Teams can consist of 1 to 4 members. We strongly encourage interdisciplinary teams combining deep AI/ML engineers with full-stack developers and product/domain thinkers.
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary>
-            <span>Who owns the Intellectual Property (IP) of the software built?</span>
-            <span class="faq-toggle-icon">+</span>
-          </summary>
-          <div class="faq-answer">
-            Participants retain 100% ownership of their intellectual property. Neither The Economic Times nor hackathon sponsors claim ownership over your code, unless you mutually enter into a formal commercial pilot agreement or acquisition with a track sponsor following the event.
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary>
-            <span>How can my enterprise sponsor or co-create a challenge track?</span>
-            <span class="faq-toggle-icon">+</span>
-          </summary>
-          <div class="faq-answer">
-            Enterprises can join as a Title Partner, Track Innovation Partner, Platform &amp; Cloud Partner or Associate Partner. Fill in the <a href="#lead" style="color: var(--primary-light);">partnership enquiry form</a> or contact our partnerships desk at <code style="color: var(--primary-light);">hackathon@economictimes.com</code>. We provide full co-branded integration, custom problem statement definition, and media campaigns across ET assets.
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary>
-            <span>How much does sponsorship cost?</span>
-            <span class="faq-toggle-icon">+</span>
-          </summary>
-          <div class="faq-answer">
-            Pricing depends on the tier and the deliverables you choose. Request the sponsor deck through the <a href="#lead" style="color: var(--primary-light);">enquiry form</a> for current tier pricing, or book a call with the partnerships team to build a custom package.
-          </div>
-        </details>
-
-        <details class="faq-item">
-          <summary>
-            <span>What hardware, compute, and API keys are provided?</span>
-            <span class="faq-toggle-icon">+</span>
-          </summary>
-          <div class="faq-answer">
-            All shortlisted Phase 2 and Phase 3 teams receive subsidized or fully sponsored API credits for leading LLMs and specialized cloud GPU clusters provided by our cloud hyperscaler partners.
-          </div>
-        </details>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- ==========================================================================
-       15 FOOTER
+       15 NEED HELP / CONTACT US
        ========================================================================== -->
-  <footer class="site-footer">
+  
+
+  <!-- ==========================================================================
+       16 FOOTER
+       ========================================================================== -->
+  <style>
+    .premium-footer {
+      background: #0B0F19;
+      color: #fff;
+      padding: 80px 0 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .premium-footer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(244,63,94,0.5), transparent);
+    }
+    .premium-footer .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 64px;
+    }
+    @media (max-width: 900px) {
+      .premium-footer .footer-top {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+    .premium-footer .et-text-brand .et-sub,
+    .premium-footer .et-text-brand .et-main {
+      color: #fff !important;
+    }
+    .premium-footer .footer-col-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #94A3B8;
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+    .premium-footer .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .premium-footer .footer-links a {
+      color: #CBD5E1;
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    .premium-footer .footer-links a:hover {
+      color: #fff;
+      transform: translateX(4px);
+    }
+    .premium-footer .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 13px;
+      color: #94A3B8;
+    }
+    @media (max-width: 768px) {
+      .premium-footer .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+    .social-links {
+      display: flex;
+      gap: 16px;
+    }
+    .social-links a {
+      color: #94A3B8;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+    .social-links a:hover {
+      color: #fff;
+      background: var(--primary-color);
+    }
+  </style>
+
+  <footer class="premium-footer">
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <div class="et-logo-badge">
-            <div class="et-crest">ET</div>
+          <div class="et-logo-badge" style="margin-bottom: 24px;">
+            <div class="et-crest" style="background: var(--primary-color); color: #fff;">ET</div>
             <div class="et-text-brand">
               <span class="et-sub">The Economic Times</span>
               <span class="et-main">AI HACKATHON 2026</span>
             </div>
           </div>
-          <p style="font-size: 14px; max-width: 320px; line-height: 1.6;">
+          <p style="font-size: 15px; max-width: 320px; line-height: 1.6; color: #94A3B8; margin-bottom: 24px;">
             India's flagship enterprise and developer artificial intelligence marathon. Connecting elite builders with sovereign challenges.
           </p>
-          <div style="font-size: 13px; color: var(--text-dim); font-family: var(--font-mono);">
-            Official Inquiries: <a href="mailto:hackathon@economictimes.com" style="color: var(--primary-light);">hackathon@economictimes.com</a>
+          <div style="font-size: 14px; color: #94A3B8; font-family: var(--font-mono);">
+            Official Inquiries: <br>
+            <a href="mailto:hackathon@economictimes.com" style="color: #fff; text-decoration: none; font-weight: 600; font-size: 15px; margin-top: 8px; display: inline-block;">hackathon@economictimes.com</a>
           </div>
         </div>
 
@@ -1228,8 +1059,8 @@
           <h4 class="footer-col-title">Navigation</h4>
           <ul class="footer-links">
             <li><a href="#about">About Edition 3.0</a></li>
-            <li><a href="#challenges">Flagship Challenges</a></li>
-            <li><a href="#journey">Timeline & Phases</a></li>
+            <li><a href="#who-should-build">Who Should Build</a></li>
+            <li><a href="#sponsor">Why Sponsor</a></li>
             <li><a href="#impact">Previous Winners</a></li>
             <li><a href="#faq">Frequently Asked Questions</a></li>
           </ul>
@@ -1239,85 +1070,52 @@
           <h4 class="footer-col-title">For Partners</h4>
           <ul class="footer-links">
             <li><a href="#sponsor">Why Sponsor</a></li>
-            <li><a href="#sponsor">Sponsorship Tiers</a></li>
-            <li><a href="#lead">Request Partnership Deck</a></li>
-            <li><a href="#lead">Partnership enquiry</a></li>
-            <li><a href="#lead" data-deck-request>Sponsor deck and media kit</a></li>
+            <li><a href="#audience">Who Sees Your Brand</a></li>
+            <li><a href="#lead">Partnership Enquiry</a></li>
+            <li><a href="#hero-enquiry-form">Quick Sponsor Form</a></li>
+            <li><a href="#lead">Sponsor deck & media kit</a></li>
           </ul>
         </div>
 
         <div>
-          <!-- TODO: publish these pages and confirm the paths -->
           <h4 class="footer-col-title">Legal & Guidelines</h4>
           <ul class="footer-links">
-            <li><a href="/ai-hackathon/code-of-conduct">Code of Conduct</a></li>
-            <li><a href="/ai-hackathon/rules">Rules & Evaluation Rubric</a></li>
-            <li><a href="/ai-hackathon/privacy-policy">Privacy Policy</a></li>
-            <li><a href="/ai-hackathon/terms">Terms & Conditions</a></li>
-            <li><a href="/ai-hackathon/ip-policy">IP & Compliance Policy</a></li>
+            <li><a href="#">Code of Conduct</a></li>
+            <li><a href="#">Rules & Evaluation Rubric</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">IP & Compliance Policy</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
         <div>
-          © 2026 The Economic Times · Bennett, Coleman & Co. Ltd. (BCCL). All rights reserved.
+          &copy; 2026 The Economic Times &middot; Bennett, Coleman & Co. Ltd. (BCCL). All rights reserved.
         </div>
-        <div style="display: flex; gap: 20px;">
-          <!-- TODO: confirm official handles -->
-          <a href="https://www.linkedin.com/company/the-economic-times/" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://x.com/EconomicTimes" target="_blank" rel="noopener">X</a>
-          <a href="https://www.youtube.com/@EconomicTimes" target="_blank" rel="noopener">YouTube</a>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/company/the-economic-times/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg>
+          </a>
+          <a href="https://x.com/EconomicTimes" target="_blank" rel="noopener" aria-label="X (Twitter)">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"></path></svg>
+          </a>
+          <a href="https://www.youtube.com/@EconomicTimes" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 576 512" height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg>
+          </a>
         </div>
       </div>
     </div>
   </footer>
 
   <!-- Sticky partner button: scrolls to the enquiry form; hides while the form is on screen -->
-  <a href="#lead" id="lead-open-pill" class="lead-minimized-pill" data-track="sticky_partner_click" hidden>
-    <span aria-hidden="true">💼</span>
-    <span>Partner with us</span>
-  </a>
+  
 
   <!-- ==========================================================================
        MODALS
        ========================================================================== -->
 
-  <!-- 1. Challenge Detail Modal -->
-  <div id="challenge-modal" class="modal-backdrop">
-    <div class="modal-card">
-      <button type="button" id="close-challenge-modal" class="modal-close-btn" aria-label="Close">×</button>
-      <div class="sec-label" id="cm-partner">Partner Name</div>
-      <h2 id="cm-title" style="font-size: 26px; font-weight: 700; margin: 8px 0 16px;">Challenge Title</h2>
-      
-      <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); padding: 12px 18px; border-radius: var(--radius-md); margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
-        <span style="font-size: 13px; font-family: var(--font-mono); color: #34d399;">TRACK PRIZE & FAST-TRACK:</span>
-        <strong id="cm-prize" style="color: #fff; font-size: 16px;">₹6,00,000</strong>
-      </div>
-
-      <div style="margin-bottom: 20px;">
-        <h4 style="font-size: 14px; font-family: var(--font-mono); text-transform: uppercase; color: var(--text-dim); margin-bottom: 6px;">Problem Statement:</h4>
-        <p id="cm-problem" style="font-size: 15px; color: var(--text-muted); line-height: 1.6;"></p>
-      </div>
-
-      <div style="margin-bottom: 20px;">
-        <h4 style="font-size: 14px; font-family: var(--font-mono); text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px;">Key Deliverables & Evaluation Criteria:</h4>
-        <ul id="cm-deliverables" style="list-style: none; font-size: 14px; color: var(--text-muted);"></ul>
-      </div>
-
-      <div style="margin-bottom: 28px;">
-        <h4 style="font-size: 14px; font-family: var(--font-mono); text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px;">Recommended Stack:</h4>
-        <div id="cm-stack" class="challenge-stack-pills"></div>
-      </div>
-
-      <div style="display: flex; gap: 12px; justify-content: flex-end;">
-        <button type="button" class="btn btn-secondary" data-close-modal>Close</button>
-        <button type="button" class="btn btn-primary open-builder-modal-btn" id="cm-enroll-btn">Enroll in this Track →</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 2. Builder Free Registration Modal -->
+  <!-- 1. Builder Free Registration Modal -->
   <div id="builder-reg-modal" class="modal-backdrop">
     <div class="modal-card">
       <button type="button" id="close-builder-modal" class="modal-close-btn" aria-label="Close">×</button>
@@ -1399,7 +1197,7 @@
     </div>
   </div>
 
-  <!-- 3. Video modal: plays the real YouTube video set in each card's data-youtube-id -->
+  <!-- 2. Video modal: plays the real YouTube video set in each card's data-youtube-id -->
   <div id="video-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="vm-title">
     <div class="modal-card" style="max-width: 860px; padding: 24px;">
       <button type="button" id="close-video-modal" class="modal-close-btn" aria-label="Close">×</button>
@@ -1410,5 +1208,39 @@
 
   <!-- Main JavaScript Controller -->
   <script src="app.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const counters = document.querySelectorAll('.counter');
+  const speed = 200; // The lower the slower
+  
+  const animateCounters = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counter = entry.target;
+        const target = +counter.getAttribute('data-target');
+        const updateCount = () => {
+          const count = +counter.innerText;
+          const inc = target / speed;
+          if (count < target) {
+            counter.innerText = Math.ceil(count + inc);
+            setTimeout(updateCount, 15);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        updateCount();
+        observer.unobserve(counter);
+      }
+    });
+  };
+
+  const observer = new IntersectionObserver(animateCounters, { threshold: 0.5 });
+  counters.forEach(counter => {
+    observer.observe(counter);
+  });
+});
+</script>
+
 </body>
 </html>
